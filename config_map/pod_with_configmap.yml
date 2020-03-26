@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dapi
+spec:
+  containers:
+    - name: test-container
+      image: k8s.gcr.io/busybox
+      command: [ "/bin/sh", "-c", "env" ]
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+      env:
+        # Define the environment variable
+        - name: SPECIAL_LEVEL_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: custom-map   # name of the config map
+              key: company_name  # specify the key -> and it's value will be fetched 
+        - name: secound
+          valueFrom:
+            configMapKeyRef:
+              name: custom-map
+              key: cluster_name
+  restartPolicy: Never

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: custom-map
+data:
+  cluster_name: ExportExecutor 
+  ip: localhost 
+  company_name: contentserv
+  port: "80"
+
+
